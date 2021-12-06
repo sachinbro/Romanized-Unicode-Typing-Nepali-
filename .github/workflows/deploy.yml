@@ -22,8 +22,8 @@ jobs:
           
             #Now we have got the access of Azure Server and we will start the deploy .
             cd /var/www/dev.sachin.software/public_html/EADLab4 &&
-            git checkout main &&
-            git fetch --all &&
-            git reset --hard origin/main &&
-            git pull origin main
+            sudo git checkout main &&
+            sudo git fetch --all &&
+            sudo git reset --hard origin/main &&
+            sudo git pull origin main
           '

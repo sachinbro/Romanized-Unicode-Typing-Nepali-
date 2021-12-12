@@ -1,4 +1,5 @@
 # nepali-typing
+Find your Typing speed in real time. Wanna help grow the project? Go on and clone this repo and make it bigger
 
 ## Project setup
 ```

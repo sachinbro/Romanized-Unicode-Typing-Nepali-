@@ -50,7 +50,7 @@
                 minutes = String(minutes).padStart(2,"0")
                 seconds = String(seconds).padStart(2,"0")
                 this.cuteTime = minutes + ":" + seconds
-                if(this.time === 3){
+                if(this.time === 300){
                     console.log("time is up")
                     this.endTime()
                     this.$emit('timeup')

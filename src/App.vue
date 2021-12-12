@@ -1,11 +1,12 @@
 <template>
   <h1> Romanized Unicode Typing(Nepali)</h1>
-  <Main @paragraph= "paragraphSelect"/>
-  <TheTime :isPlaying= "isPlaying" :gameFinished= "gameFinished" @current-time= "updateTime" @timeup= "gameOver" :isNewGame= "isNewGame"/>
-  <TypingField :paragraph= "paragraph" :isPlaying= "isPlaying" 
+  <Main @paragraph= "paragraphSelect" ref= "main"/>
+  <TheTime :isPlaying= "isPlaying" :gameFinished= "gameFinished" @current-time= "updateTime" @timeup= "gameOver" :isNewGame= "isNewGame" ref= "time"/>
+  <TypingField  :isPlaying= "isPlaying" 
   :autoFocus= "autoFocus" :currentTime= "currentTime" @game-over= "gameOver" 
   :isNewGame= "isNewGame" ref="typingfield"/>
   <button @click= "play" :disabled= "false"> Play</button>
+  <button @click= "loadNewGame" :disabled= "!newButton"> New Game</button>
 </template>
 
 <script>
@@ -27,6 +28,8 @@ export default {
       currentTime: 0,
       gameFinished: false,
       autoFocus: false,
+      newButton: false,
+      anotherGame: false,
       paragraph: ''
     }
   },
@@ -36,12 +39,14 @@ export default {
    play(){
      this.isPlaying = true
      this.autoFocus = true
+     this.newButton = true
+     
      
    },
    gameOver(event){
      this.gameFinished = event
-     
      this.isPlaying = !event
+     this.newButton = true
    },
    updateTime(time){
      this.currentTime = time
@@ -53,6 +58,14 @@ export default {
    },
    paragraphSelect(paragraph){
      this.paragraph = paragraph
+     this.$refs.typingfield.paragraph = paragraph
+     this.$refs.typingfield.updateInfo()
+   },
+   loadNewGame(){
+     
+     this.$refs.typingfield.resetInput()
+     this.$refs.time.resetTimer()
+     this.$refs.main.random()
    }
  }
 }

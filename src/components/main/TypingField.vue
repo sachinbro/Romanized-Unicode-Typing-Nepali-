@@ -7,11 +7,12 @@
 
 <script>
 export default {    
-    props: ['paragraph','isPlaying', 'autoFocus','currentTime', 'isNewGame'],
+    props: ['isPlaying', 'autoFocus','currentTime', 'isNewGame'],
     emits:['game-over'],
     data(){
         return{
             index: 0,
+            paragraph: [],
             score: 0,
             splitWordIndex: 0,
             splitParagraph: [],
@@ -22,10 +23,8 @@ export default {
 
         }
     },
-    async mounted() {
-        await this.paragraph
+     mounted() {    
         this.splitParagraph = this.paragraph.split('')  //split paragraph into alphabets
-        console.log(this.splitParagraph)
         this.splitWord = this.paragraph.split(' ')      //splits the paragraph into words without space
         this.$refs.input.addEventListener('keypress', (event) =>{   
         })
@@ -47,6 +46,11 @@ export default {
             }
 
         },
+        updateInfo(){
+            this.splitParagraph = this.paragraph.split('')  //split paragraph into alphabets
+            this.splitWord = this.paragraph.split(' ')      //splits the paragraph into words without space
+            
+        },
         // backSpace(event){                                       // handle the backspace and deletekey
         //     if(event.keyCode === 8 && event.keyCode === 46){
         //         console.log(this.splitWord[this.splitWordIndex])
@@ -65,7 +69,6 @@ export default {
 
         handleSpace(){
             this.score ++
-            console.log(this.score)
             this.correctWord = []
             this.$refs.input.value = null
             

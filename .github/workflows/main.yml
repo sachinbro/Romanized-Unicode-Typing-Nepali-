@@ -22,8 +22,8 @@ jobs:
           
             #Now we have got the access of Azure Server and we will start the deploy .
             cd /var/www/dev.sachin.software/public_html/Romanized-Unicode-Typing-Nepali- &&
-            sudo git checkout main &&
+            sudo git checkout master &&
             sudo git fetch --all &&
-            sudo git reset --hard origin/main &&
-            sudo git pull origin main
+            sudo git reset --hard origin/master &&
+            sudo git pull origin master
           '

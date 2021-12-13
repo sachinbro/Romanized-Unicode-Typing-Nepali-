@@ -1,6 +1,8 @@
 <template>
   
-    <p>{{paragraphObject[randomValue].text}} </p>
+    <span v-for= "splitWord in splitWords">
+        {{splitWord}}
+    </span>
 
 </template>
 
@@ -10,6 +12,7 @@ export default {
     data(){
         return{
             randomValue: 0,
+            splitWords: [],
             paragraphObject: [
                 {
                     author: 'लक्ष्मीप्रसाद देवकोटा',
@@ -34,14 +37,20 @@ export default {
                 {
                     author: 'भैरव अर्याल',
                     article: 'जय भुडि' ,
-                    text: 'दोस्रो छ- घ्याम्पे भुडी । जो हाँडीघोप्टे भुँडीभन्दा अलि सानो भए पनि स्वभावमा भने प्रायः उस्तैउस्तै हुन्छ । तेस्रो हो-टाकनटुकन भुँडी । जसलाई नैवेद्य जुटाउन सत्रतिर दाह्रा ङिच्च्याई टाकनटुकन नगरी हुँदैन ',
+                    text: 'दोस्रो छ-घ्याम्पे भुडी । जो हाँडीघोप्टे भुँडीभन्दा अलि सानो भए पनि स्वभावमा भने प्रायः उस्तैउस्तै हुन्छ । तेस्रो हो-टाकनटुकन भुँडी । जसलाई नैवेद्य जुटाउन सत्रतिर दाह्रा ङिच्च्याई टाकनटुकन नगरी हुँदैन ',
                     difficulty: 'medium'},
                 {
                     author: 'भैरव अर्याल',
                     article: 'जय भुडि' ,
-                    text: ' हेरिल्याएको खण्डमा कृष्ण हुन् कि क्राइष्ट हुन्, बुद्ध हुन् कि कन्फ्युसियस हुन् सबै देवात्माहरु भुँडीबाट मर्त्यलोकमा अवरोहण गरेका हुन् । महर्षि हुन् कि मार्क्स हुन्, सन्त हुन् कि सार्त्र हुन्, सबै दार्शनिकहरु भुँडीमै निर्मित भएर देखा परेका हुन् ',
+                    text: 'हेरिल्याएको खण्डमा कृष्ण हुन् कि क्राइष्ट हुन्, बुद्ध हुन् कि कन्फ्युसियस हुन् सबै देवात्माहरु भुँडीबाट मर्त्यलोकमा अवरोहण गरेका हुन् । महर्षि हुन् कि मार्क्स हुन्, सन्त हुन् कि सार्त्र हुन्, सबै दार्शनिकहरु भुँडीमै निर्मित भएर देखा परेका हुन् ',
                     difficulty: 'hard',
                 },
+                {
+                    author: 'भैरव अर्याल',
+                    article: 'जय भुडि' ,
+                    text: "'तँ' को आदरार्थी 'तपाईँ' भएजस्तै 'म' को आदरार्थी 'मपाई' हुन्छ । त्यसैले सभ्य भाषामा 'तँ' को ठाउँ 'मपाई' ले नलिनु किन ?",
+                    difficulty: 'easy'
+                }
 
             ]
         }
@@ -49,13 +58,17 @@ export default {
     mounted(){
         this.randomValue =  Math.floor(Math.random() * this.paragraphObject.length)
         this.$emit('paragraph', this.paragraphObject[this.randomValue].text)
+        this.splitWords = this.paragraphObject[this.randomValue].text.split('')
         
     },
     methods:{
         random(){
             this.randomValue =  Math.floor(Math.random() * this.paragraphObject.length)
             this.$emit('paragraph', this.paragraphObject[this.randomValue].text)
-        }
+            this.splitWords = this.paragraphObject[this.randomValue].text.split('')
+            console.log("हम")
+        },
+        
     },
 }
 </script>

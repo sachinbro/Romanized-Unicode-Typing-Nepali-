@@ -8,7 +8,7 @@
 <script>
 export default {    
     props: ['isPlaying', 'autoFocus','currentTime', 'isNewGame'],
-    emits:['game-over'],
+    emits:['game-over','keypressed'],
     data(){
         return{
             index: 0,
@@ -26,7 +26,8 @@ export default {
      mounted() {    
         this.splitParagraph = this.paragraph.split('')  //split paragraph into alphabets
         this.splitWord = this.paragraph.split(' ')      //splits the paragraph into words without space
-        this.$refs.input.addEventListener('keypress', (event) =>{   
+        this.$refs.input.addEventListener('keydown', (event) =>{  
+            this.$emit('keypressed', event.keyCode)
         })
         
     },

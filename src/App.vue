@@ -1,10 +1,10 @@
 <template>
   <h1> Romanized Unicode Typing(Nepali)</h1>
-  <Main @paragraph= "paragraphSelect" ref= "main"/>
   <TheTime :isPlaying= "isPlaying" :gameFinished= "gameFinished" @current-time= "updateTime" @timeup= "gameOver" :isNewGame= "isNewGame" ref= "time"/>
+  <Main @paragraph= "paragraphSelect" ref= "main"/>
   <TypingField  :isPlaying= "isPlaying" 
   :autoFocus= "autoFocus" :currentTime= "currentTime" @game-over= "gameOver" 
-  :isNewGame= "isNewGame" ref="typingfield"/>
+  :isNewGame= "isNewGame" @keypressed= "keypressed" ref="typingfield"/>
   <button @click= "play" :disabled= "false"> Play</button>
   <button @click= "loadNewGame" :disabled= "!newButton"> New Game</button>
 </template>
@@ -66,6 +66,9 @@ export default {
      this.$refs.typingfield.resetInput()
      this.$refs.time.resetTimer()
      this.$refs.main.random()
+   },
+   keypressed(event){
+     
    }
  }
 }

@@ -137,6 +137,7 @@ export default {
             this.splitWord= []
             this.correctWord= []
             this.speed= 0
+            this.aarkoIndex = 0
             const allWords = this.$refs.span.querySelectorAll('span')
             allWords.forEach((word,index) =>{
                 word.classList.remove('correct')
@@ -151,6 +152,7 @@ export default {
                 console.log(" सक्कियो")
                 this.$refs.input.blur()
                 this.$emit('game-over', true)
+            
             }
         },
         autoFocus(){
@@ -169,7 +171,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 
 .correct{
     color: blue;

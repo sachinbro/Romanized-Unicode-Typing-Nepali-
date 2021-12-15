@@ -59,7 +59,9 @@
             },
             gameFinished(){
                 if(this.gameFinished){
+                    this.resetTimer()
                         this.endTime()
+                        
                     
 
                 }

@@ -1,8 +1,8 @@
 <template>
   
-    <span v-for= "splitWord in splitWords">
-        {{splitWord}}
+    <span  ref= "span">
     </span>
+
 
 </template>
 
@@ -13,6 +13,8 @@ export default {
         return{
             randomValue: 0,
             splitWords: [],
+            checkWord:[],
+            index: 0,
             paragraphObject: [
                 {
                     author: 'लक्ष्मीप्रसाद देवकोटा',
@@ -22,22 +24,22 @@ export default {
                 {
                     author: 'भानुभक्त आचार्य',
                     article: 'घाँसी',
-                    text:  'भर् जन्म घाँस तिर मन् दिई धन कमायो। नाम क्यै रहोस् प छि भनेर कुवा खनायो। घाँसी दरिद्र घरको तर बुद्धि कस्तो। म भानुभक्त धनी भैकन किन यस्तो । ',
+                    text:  'भर् जन्म घाँस तिर मन् दिई धन कमायो। नाम क्यै रहोस् पछि भनेर कुवा खनायो। घाँसी दरिद्र घरको तर बुद्धि कस्तो। म भानुभक्त धनी भैकन किन यस्तो । ',
                     difficulty: 'medium'},
                 {
                     author: 'लक्ष्मीप्रसाद देवकोटा',
                     article: 'मुना मदन',
-                    text: 'क्षेत्रीको छोरो यो पाउ छुन्छ, घिनले छुदैन मानिस ठूलो दिलले हुन्छ, जातले हुदैन। ',
+                    text: 'क्षेत्रीको छोरो यो पाउ छुन्छ, घिनले छुदैन मानिस ठूलो दिलले हुन्छ, जातले हुदैन । ',
                     difficulty: 'easy'},
                 {
                     author: 'लक्ष्मीप्रसाद देवकोटा',
                     article: 'मुना मदन',
-                    text:   'हातका मैला सुनका थैला के गर्नु धनले साग र सिस्नु खाएको बेस आनन्दी मनले। ',
+                    text:   'हातका मैला सुनका थैला के गर्नु धनले साग र सिस्नु खाएको बेस आनन्दी मनले । ',
                     difficulty: 'easy'},
                 {
                     author: 'भैरव अर्याल',
                     article: 'जय भुडि' ,
-                    text: 'दोस्रो छ-घ्याम्पे भुडी । जो हाँडीघोप्टे भुँडीभन्दा अलि सानो भए पनि स्वभावमा भने प्रायः उस्तैउस्तै हुन्छ । तेस्रो हो-टाकनटुकन भुँडी । जसलाई नैवेद्य जुटाउन सत्रतिर दाह्रा ङिच्च्याई टाकनटुकन नगरी हुँदैन ',
+                    text: 'दोस्रो छ-घ्याम्पे भुडी । जो हाँडीघोप्टे भुँडीभन्दा अलि सानो भए पनि स्वभावमा भने प्रायः उस्तैउस्तै हुन्छ । तेस्रो हो-टाकनटुकन भुँडी । जसलाई नैवेद्य जुटाउन सत्रतिर दाह्रा ङिच्च्याई टाकनटुकन नगरी हुँदैन . ',
                     difficulty: 'medium'},
                 {
                     author: 'भैरव अर्याल',
@@ -56,9 +58,9 @@ export default {
         }
     },
     mounted(){
-        this.randomValue =  Math.floor(Math.random() * this.paragraphObject.length)
-        this.$emit('paragraph', this.paragraphObject[this.randomValue].text)
-        this.splitWords = this.paragraphObject[this.randomValue].text.split('')
+        // this.randomValue =  Math.floor(Math.random() * this.paragraphObject.length)
+        // this.$emit('paragraph', this.paragraphObject[this.randomValue].text)
+        // this.splitWords = this.paragraphObject[this.randomValue].text.split('')
         
     },
     methods:{
@@ -68,7 +70,19 @@ export default {
             this.splitWords = this.paragraphObject[this.randomValue].text.split('')
             console.log("हम")
         },
-        
+        check(event){
+            // this.checkWord.push(event.key)
+            // console.log(this.checkWord)
+            // if(event.key === this.splitWords[this.index]){
+            //     if(event.keyCode !== 32){
+            //         console.log("correct alphabet")
+            //     }
+            //     else {
+            //         console.log("correct space")
+            //     }
+            //     this.index ++
+            // }
+        }
     },
 }
 </script>

@@ -5,8 +5,8 @@
   <TypingField  :isPlaying= "isPlaying" 
   :autoFocus= "autoFocus" :currentTime= "currentTime" @game-over= "gameOver" 
   :isNewGame= "isNewGame" @keypressed= "keypressed" ref="typingfield"/>
-  <button @click= "play" :disabled= "false"> Play</button>
-  <button @click= "loadNewGame" :disabled= "!newButton"> New Game</button>
+  <button @click= "loadNewGame" :disabled= "false"> Play</button>
+  <!-- <button @click= "loadNewGame" :disabled= "!newButton"> New Game</button> -->
 </template>
 
 <script>
@@ -62,13 +62,16 @@ export default {
      this.$refs.typingfield.updateInfo()
    },
    loadNewGame(){
+     this.isPlaying = true
+     this.autoFocus = true
+     this.newButton = true
      
      this.$refs.typingfield.resetInput()
      this.$refs.time.resetTimer()
      this.$refs.main.random()
    },
    keypressed(event){
-     
+     this.$refs.main.check(event)
    }
  }
 }

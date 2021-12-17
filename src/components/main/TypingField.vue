@@ -1,20 +1,28 @@
 <template>
-
-  <div ref= "span">
-         <span v-for= "words in splitParagraph" >
-        {{words}}
-  </span>
-  </div>
-   
-  <input type="text" placeholder= "type here" @keypress= "romanTyping"  ref= "input"   :disabled= "!isPlaying">
-  <p> Correct word:{{score}}</p>
+<div v-show= "showInput">
+  <!-- <p> Correct word:{{score}}</p> -->
   <span> Speed: {{speed }} WPM</span>
   <br>
+<div class= "box mt border input-field" v-show= "showInput">
+    <div>
+        <div ref= "progress" class= "">
+        </div>
+    </div>
+  <div ref= "span" class= "mt-2 mb-2 pl-1">
+         <span v-for= "words in splitParagraph" >
+        {{words}}
+         </span>
+  </div>
+  <input type="text" placeholder= "type here" @keypress= "romanTyping"  ref= "input"
+  class= "mb-4 mt-4 input"   :disabled= "!isPlaying">
+</div>
+
+</div>
 </template>
 
 <script>
 export default {    
-    props: ['isPlaying', 'autoFocus','currentTime', 'isNewGame'],
+    props: ['isPlaying', 'autoFocus','currentTime', 'isNewGame','showInput'],
     emits:['game-over','keypressed'],
     data(){
         return{
@@ -45,7 +53,7 @@ export default {
 
             do{
             const character = inputValue[index]
-            console.log(character)
+            
                 if(character == null){
                     allWords[this.aarkoIndex].classList.remove('correct')
                     allWords[this.aarkoIndex].classList.remove('incorrect')
@@ -65,6 +73,8 @@ export default {
         }
         else if(event.data === " "){
             this.aarkoIndex++
+            this.$refs.input.value = null
+
         }
         else if( event.inputType === "deleteContentBackward")  {
             if(event.originalTarget.value + 1 === ""){
@@ -148,12 +158,15 @@ export default {
     watch: {
         index(maxValue){
             this.speed = Math.round((this.score / this.currentTime)*60)
+            
+
             if(maxValue === this.splitParagraph.length){
                 console.log(" सक्कियो")
                 this.$refs.input.blur()
                 this.$emit('game-over', true)
             
             }
+
         },
         autoFocus(){
             setTimeout(() =>this.$refs.input.focus() , 10)
@@ -172,9 +185,18 @@ export default {
 </script>
 
 <style scoped>
-
+.input-field{
+    padding: 1px;
+    background-color:#f6fbff;
+    margin-left: 30vw;
+    margin-right: 30vw;
+    position: relative;
+}
+.input{
+    width: 90%;
+}
 .correct{
-    color: blue;
+    color:#99cc00;
 }
 .incorrect{
     background-color: rgb(224, 158, 158);

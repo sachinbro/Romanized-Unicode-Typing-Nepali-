@@ -1,29 +1,38 @@
-<template>
+<template >
   <h1> Romanized Unicode Typing(Nepali)</h1>
-  <TheTime :isPlaying= "isPlaying" :gameFinished= "gameFinished" @current-time= "updateTime" @timeup= "gameOver" :isNewGame= "isNewGame" ref= "time"/>
+  <TheTime :isPlaying= "isPlaying" :gameFinished= "gameFinished" :isNewGame= "isNewGame" :showInput= "showInput"
+   @current-time= "updateTime" @timeup= "gameOver" ref= "time"/>
   <Main @paragraph= "paragraphSelect" ref= "main"/>
-  <TypingField  :isPlaying= "isPlaying" 
+  <TypingField  :isPlaying= "isPlaying" :showInput= "showInput"
   :autoFocus= "autoFocus" :currentTime= "currentTime" @game-over= "gameOver" 
   :isNewGame= "isNewGame" @keypressed= "keypressed" ref="typingfield"/>
-  <button @click= "loadNewGame" :disabled= "false"> Play</button>
+  <Steps :showInput= "showInput"/>
+  <button @click= "loadNewGame" :disabled= "false" class= "btn btn-primary play-button"> Play</button>
   <!-- <button @click= "loadNewGame" :disabled= "!newButton"> New Game</button> -->
+  <br>
+  <Tips :showInput="showInput"/>
 </template>
 
 <script>
 import Main from './components/main/Main.vue'
 import TypingField from './components/main/TypingField.vue'
 import TheTime from './components/main/TheTime.vue'
+import Steps from './components/main/Steps.vue'
+import Tips from './components/main/HelpFullTips.vue'
 export default {
   name: 'App',
   components: {
     Main,
     TypingField,
-    TheTime
+    TheTime,
+    Steps,
+    Tips
 },
   data(){
     return{
       isPlaying:false,
       isNewGame: false,
+      showInput: false,
       showPlayButton: false,
       currentTime: 0,
       gameFinished: false,
@@ -40,6 +49,7 @@ export default {
      this.isPlaying = true
      this.autoFocus = true
      this.newButton = true
+     this.showInput = false
      
      
    },
@@ -65,6 +75,7 @@ export default {
      this.isPlaying = true
      this.autoFocus = true
      this.newButton = true
+     this.showInput = true
      
      this.$refs.typingfield.resetInput()
      this.$refs.time.resetTimer()
@@ -85,5 +96,10 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+ 
 }
+.play-button{
+  
+}
+
 </style>

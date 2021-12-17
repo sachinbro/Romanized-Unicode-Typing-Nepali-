@@ -1,16 +1,16 @@
 <template>
-    <span>time:{{cuteTime}}</span>
+    <span v-if= "showInput">Time:{{cuteTime}}</span>
     <br>
 </template>
 
 <script>
     export default {
-        props:['isPlaying', 'gameFinished', 'isNewGame'],
+        props:['isPlaying', 'gameFinished', 'isNewGame', 'showInput'],
         emits:['current-time','timeup'],
         data(){
             return{
                 showTimer: false,
-                time : 0,
+                time : '00:00',
                 cuteTime: '00:00',
             }
          },
